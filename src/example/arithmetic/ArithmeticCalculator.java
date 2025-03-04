@@ -17,7 +17,7 @@ public class ArithmeticCalculator {
 
 
 
-    public int calculator (int a, int b, char oper) {
+    public int calculate(int a, int b, char oper) {
         int result = 0;
         OperatorType operator = OperatorType.fromChar(oper);
 
