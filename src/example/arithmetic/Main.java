@@ -32,7 +32,7 @@ public class Main {
             char oper = scanner.next().charAt(0);
             System.out.println("입력한 기호: " + oper);
 
-            int result = calculator1.calculator(first, second, oper);
+            int result = calculator1.calculate(first, second, oper);
             System.out.println("계산 결괴: " + result);
 
             List<Integer> list = calculator1.getList();
