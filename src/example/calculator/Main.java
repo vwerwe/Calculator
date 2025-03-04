@@ -13,7 +13,7 @@ public class Main {
             System.out.println("첫 번째 숫자를 입력해주세요(양의 정수)");
             int a = scanner.nextInt();
             int first = 0;
-            if(a >= 0) {
+            if (a >= 0) {
                 first = a;
             }
             System.out.println("첫 번째 숫자: " + first);
