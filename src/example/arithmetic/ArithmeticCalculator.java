@@ -4,31 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-
-
 public class ArithmeticCalculator {
 
 
 
-    private List<Integer> list = new ArrayList<>();
+    private List<Double> list = new ArrayList<>();
 
 
 
 
 
-    public int calculate(int a, int b, char oper) {
-        int result = 0;
+    public <S extends Number> double calculate(S a, S b, char oper) {
+        double num1 = a.doubleValue();
+        double num2 = b.doubleValue();
+        double result = 0;
         OperatorType operator = OperatorType.fromChar(oper);
 
         switch(operator){
-            case ADD: result = a + b;
+            case ADD: result = num1 + num2;
             break;
-            case SUB: result = a - b;
+            case SUB: result = num1 - num2;
             break;
-            case MULTIPLY: result = a * b;
+            case MULTIPLY: result = num1 * num2;
             break;
-            case DIVISION: result = a / b;
+            case DIVISION: if (num2 == 0) {
+                try {
+                    throw new IllegalAccessException("나눗셈 연산에서 분모에 0은 입력하지 못합니다");
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            }else {
+                result = num1 / num2;
+            }
             default:
                 System.out.println("지원되지 않는 연산자입니다.");
         }
@@ -38,11 +45,11 @@ public class ArithmeticCalculator {
     }
 
 
-    public List<Integer> getList() {
+    public List<Double> getList() {
         return list;
     }
 
-    public void setList(List<Integer> list) {
+    public void setList(List<Double> list) {
         this.list = list;
     }
 
