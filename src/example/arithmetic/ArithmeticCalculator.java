@@ -14,11 +14,24 @@ public class ArithmeticCalculator {
 
 
 
-    public <S extends Number> double calculate(S a, S b, char oper) {
+    public <S extends Number> double calculate(S a, S b, char oper) throws IllegalArgumentException {
         double num1 = a.doubleValue();
         double num2 = b.doubleValue();
         double result = 0;
         OperatorType operator = OperatorType.fromChar(oper);
+
+
+            if(operator == null) {
+                throw new IllegalArgumentException("지원되지 않는 연산자입니다.");
+            }
+
+            if(num2 == 0 && operator == OperatorType.DIVISION) {
+                throw new ArithmeticException("0으로 나눌 수 없습니다.");
+            }
+
+
+
+
 
         switch(operator){
             case ADD: result = num1 + num2;
@@ -27,17 +40,10 @@ public class ArithmeticCalculator {
             break;
             case MULTIPLY: result = num1 * num2;
             break;
-            case DIVISION: if (num2 == 0) {
-                try {
-                    throw new IllegalAccessException("나눗셈 연산에서 분모에 0은 입력하지 못합니다");
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            }else {
-                result = num1 / num2;
-            }
+            case DIVISION: result = num1 / num2;
+            break;
             default:
-                System.out.println("지원되지 않는 연산자입니다.");
+                System.out.println("지원되지 않는 연산자입니다!");
         }
 
         this.list.add(result);
